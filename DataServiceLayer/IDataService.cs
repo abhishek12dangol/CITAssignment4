@@ -43,7 +43,11 @@ public class DataService : IDataService
             UnitPrice = (decimal)p.UnitPrice,
             QuantityPerUnit = p.QuantityPerUnit,
             UnitsInStock = p.UnitsInStock,
-            CategoryName = p.Category.Name
+            CategoryName = p.Category.Name,
+            Category = new CategoryDTO
+            {
+               Name = p.Category.Name
+            }
          })
          .FirstOrDefault();
    }
@@ -150,12 +154,10 @@ public class DataService : IDataService
          .ToList();
    }
 
-   public List<OrderDetails> GetOrderDetailsByProductId(int productId)
+   public List<OrderDetails> GetOrderDetailsByProductId(int id)
    {
-      return _db.OrderDetails
-         .Where(od => od.ProductId == productId)
-         .Include(od => od.Order)
-         .OrderBy(od => od.OrderId)
-         .ToList();
+      var query = _db.OrderDetails.Include(od => od.Order)
+         .Where(od => od.ProductId == id).ToList();
+      return query;
    }
 }

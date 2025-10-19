@@ -32,13 +32,13 @@ public class ProductsController : ControllerBase
         var products = _dataService.GetProductByCategory(id);
         if (products == null || !products.Any())
         {
-            return NotFound();
+            return NotFound(products);
         }
         return Ok(products);
     }
 
-    [HttpGet]
-    public IActionResult GetProductsByName([FromQuery] string name)
+    [HttpGet("name/{name}")]
+    public IActionResult GetProductsByName(string name)
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -48,7 +48,7 @@ public class ProductsController : ControllerBase
         var products = _dataService.GetProductByName(name);
         if (products == null || !products.Any())
         {
-            return NotFound();
+            return NotFound(products);
         }
         return Ok(products);
     }

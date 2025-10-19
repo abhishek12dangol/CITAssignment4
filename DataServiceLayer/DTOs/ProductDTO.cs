@@ -8,4 +8,5 @@ public class ProductDTO
     public string QuantityPerUnit { get; set; }
     public int UnitsInStock { get; set; }
     public string CategoryName { get; set; }
+    public CategoryDTO Category { get; set; }
 }

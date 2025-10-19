@@ -10,5 +10,5 @@ public class Order
     public DateTime Required { get; set; }
     public string ShipName { get; set; }
     public string ShipCity { get; set; }
-    public List<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
+    public List<OrderDetails> OrderDetails { get; set; }
 }
